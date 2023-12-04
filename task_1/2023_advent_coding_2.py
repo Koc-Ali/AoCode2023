@@ -11,6 +11,7 @@ filename = "2023_advent_1.input2.txt"
 # filename = "2023_advent_1.input.sample.txt"
 # filename = "2023_advent_1.input.sample2.txt"
 
+
 path_to_file = fileDir + '/' + filename
 
 file = open(os.path.expanduser(path_to_file))
@@ -57,7 +58,7 @@ def extract_last_digit_string (line):
     last_digit_string =''
 
     for digit_string in digit_as_string:
-        found_position = line.rfind(digit_string)
+        found_position = line.rfind(digit_string) # search revised!
         if found_position != -1:
             # print('a) found_number_string = ', digit_string, ', found pos =', found_position, ', last found pos =', last_found_position)
             if last_found_position == -1:
