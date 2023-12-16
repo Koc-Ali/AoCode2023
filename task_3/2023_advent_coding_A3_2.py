@@ -87,10 +87,10 @@ for line in file:
     current_line = upcoming_line
     upcoming_line = line.strip()
 
-    # print(' ----- ')
-    # print('p line = ', previous_line)
-    # print('c line = ', current_line)
-    # print('u line = ', upcoming_line)
+    print(' ----- ')
+    print('p line = ', previous_line)
+    print('c line = ', current_line)
+    print('u line = ', upcoming_line)
 
     # determine numbers with their string position for current line
     current_line_numbers = extract_numbers_with_position(current_line)
@@ -140,8 +140,23 @@ for line in file:
                        adjacent_ratio = int(adjacent_number_1) * int(adjacent_number_2)
                        print('adjacent ration c+u =', adjacent_ratio, ', c = ', adjacent_number_1, ', u = ', adjacent_number_2)
                        part_number += adjacent_ratio
+    # check whether two direct neibhours in upcoming line
+    for asterik in current_line_asteriks:
+        adjacent_number_1 = 0
+        adjacent_number_2 = 0
+        for p_number in previous_line_numbers:
+            if (asterik[1] >= p_number[1] - 1) and (asterik[1] <= p_number[1] + len(p_number[0])):
+                adjacent_number_1 = p_number[0]
+                # print('-- adjacent_number_1 p1 =', adjacent_number_1)
+                for pp_number in previous_line_numbers:
+                    if (asterik[1] <= pp_number[1] - 1) and (asterik[1] >= pp_number[1] + len(pp_number[0])):
+                        adjacent_number_2 = pp_number[0]
+                        # print('-- adjacent_number_2 p2 =', adjacent_number_2)
+        adjacent_ratio = int(adjacent_number_1) * int(adjacent_number_2)
+        print('adjacent ration p+p =', adjacent_ratio, ', c = ', adjacent_number_1, ', u = ', adjacent_number_2)
+        part_number += adjacent_ratio
 
-    # chef whether an asterik has a number as direct neigbour within same line
+    # check whether an asterik has a number as direct neigbour within same line
     part_number += adjecent_numbers_in_a_line(current_line)
 
 # last line was not processed so far
